@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    
+    <session-factory>
+      <!-- 定义使用哪种数据库 -->
+      <property name="dialog" >
+        org.hibernate.dialect.MySQL5Dialect
+      </property>
+      
+       <!-- 数据库驱动类 -->
+       <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+       
+      <!-- 数据库连接地址 -->
+      <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/shop?useUnicode=true&amp;characterEncoding=UTF8</property>
+      
+      <!-- 数据库用户名 -->
+      <property name="hibernate.connection.username">root</property>
+     
+      <!-- 数据库密码 -->
+       <property name="hibernate.connection.password">root</property>
+       
+       
+   
+       <!-- 启用调试,打印出所执行的sql语句 -->
+       <property name="show_sql">true</property>
+       
+       <!-- 根据据实体类映射配置，重新创建或者更新表结构 create,update 
+          create 代表每一次启动程序，都会把原先数据库的表全部删除，再重新建立过
+          update 如果实体类的表结构与数据库不一致，就会自动更新数据库表结构
+        -->
+        <property name="hbm2ddl.auto">update</property>
+       
+        <!--允许session自动的关闭-->
+        <property name="current_session_context_class">thread</property>
+         
+        
+        <!-- 加入ORM映射文件 -->
+         <mapping class="com.xy.entity.Admin"/>
+         <mapping class="com.xy.entity.Role"/>
+    	<mapping class="com.xy.entity.Menu"/>
+    	<mapping class="com.xy.entity.RoleMenu"/>
+    	<mapping class="com.xy.entity.Student"/>
+    </session-factory> 
+
+</hibernate-configuration>

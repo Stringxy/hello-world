@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<constant name="struts.locale" value="UTF-8"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<!-- 启用调试模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 使用简单的模板theme -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+
+	<!-- 不去拦截指定的路径 -->
+	<constant name="struts.action.excludePattern" value="/static/*.*"></constant>
+	
+	<!-- struts配置, package(包)- action(动作)-result(返回结果) -->
+	<!-- 访问 http://localhost:8080/strutsfrist/namespace/action[name] /login.action -->
+	<package namespace="/common" name="LoginActionPackage"
+		extends="struts-default">
+
+		<action name="login" class="com.xy.action.LoginAction" method="execute">
+			<result name="success" type="redirect">/index.action</result>
+			<result name="input">/common/login.jsp</result>
+		</action>
+
+
+	</package>
+	<package namespace="/" name="IndexActionPackage"
+		extends="struts-default">
+
+		<action name="index" class="com.xy.action.IndexAction" method="execute">
+			<result name="success" >/index.jsp</result>
+			
+		</action>
+
+
+	</package>
+	<package namespace="/permission" name="PermissionActionPackage"
+		extends="struts-default">
+
+		<action name="*" class="com.xy.action.permission.{1}Action">
+
+			<result name="search">/permission/{1}.jsp</result>
+			<result name="save">/permission/{1}.jsp</result>
+			<result name="setPermission">/permission/{1}.jsp</result>
+			<result name="success">/permission/Upload.jsp</result>
+			<result name="input">/permission/Upload.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">application/excel,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+
+	</package>
+
+
+
+
+
+
+</struts>
