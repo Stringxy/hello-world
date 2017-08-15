@@ -126,7 +126,7 @@
 <dependency>
     <groupId>org.apache.poi</groupId>
     <artifactId>poi-ooxml</artifactId>
-    <version>3.10-FINAL</version>
+    <versions>3.10-FINAL</versions>
 </dependency>
 
 	</dependencies>
